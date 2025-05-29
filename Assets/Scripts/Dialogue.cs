@@ -26,30 +26,30 @@ public class Dialogue : MonoBehaviour
     TextMeshProUGUI nametext;
     GameObject chat_Box;
     GameObject next_Box;
-    Color next_Color;
+    GameObject skip_Box;
+    GameObject enemy_Image;
     private int count = 0;
     private float printSpeed = 0.025f;
     private bool end = false;
     private bool next = true;
-    private float time;
 
     void Start()
     {
         //Debug.Log(); //Debug
         text = this.GetComponent<TextMeshProUGUI>();
         nametext = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        enemy_Image = GameObject.Find("EnemyImage");
         chat_Box = transform.GetChild(1).gameObject;
-        //next_Box = transform.GetChild(2).gameObject;
-        //next_Color = next_Box.GetComponent<Image>().color;
-        chat_Box.SetActive(false);
-        //next_Box.SetActive(false);
+        next_Box = transform.GetChild(2).gameObject;
+        skip_Box = transform.GetChild(3).gameObject;
+        StartBox();
     }
 
     void Update()
     {
-        //BlinkAnim();
         if (Input.GetKeyDown(KeyCode.Space) && next)
         {
+            next_Box.SetActive(false);
             next = false;
             if (end)
             {
@@ -59,7 +59,7 @@ public class Dialogue : MonoBehaviour
             {
                 text.text = "";
                 chat_Box.SetActive(true);
-                next_Box.SetActive(false);
+                skip_Box.SetActive(true);
                 StartCoroutine(TextPrint(printSpeed));
             }
         }
@@ -77,6 +77,7 @@ public class Dialogue : MonoBehaviour
             }
             yield return new WaitForSeconds(printSpeed);
         }
+        next_Box.SetActive(true);
         if (count < dialogue.Length - 1) count++;
         else end = true;
         next = true;
@@ -92,23 +93,15 @@ public class Dialogue : MonoBehaviour
         text.text = "";
         nametext.text = "";
         chat_Box.SetActive(false);
-    }
-    public void BlinkAnim()
-    {
-        next_Box.SetActive(true);
+        next_Box.SetActive(false);
+        skip_Box.SetActive(false);
+        enemy_Image.SetActive(false);
 
-        if (time < 0.5f)
-        {
-            next_Color = new Color(1, 1, 1, 1 - time);
-        }
-        else
-        {
-            next_Color = new Color(1, 1, 1, time);
-            if (time > 1f)
-            {
-                time = 0;
-            }
-        }
-        time += Time.unscaledDeltaTime;
+    }
+    public void StartBox()
+    {
+        chat_Box.SetActive(false);
+        next_Box.SetActive(false);
+        skip_Box.SetActive(false);
     }
 }
