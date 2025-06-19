@@ -3,6 +3,7 @@ using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static DialogueList;
 
@@ -12,7 +13,8 @@ public class DialogueList
     public enum dialoguename
     { 
         Ã»¿î°´,
-        ÈæÇ÷¼ö¶ó
+        ÈæÇ÷¼ö¶ó,
+        ³ª·¹ÀÌ¼Ç
     }
     [SerializeField]
     public dialoguename names;
@@ -86,7 +88,7 @@ public class Dialogue : MonoBehaviour
     {
         ResetDialogue();
         StopAllCoroutines();
-        Debug.Log("Á¾·á"); //Debug
+        SceneManager.LoadScene("GameScene");
     }
     public void ResetDialogue()
     {
