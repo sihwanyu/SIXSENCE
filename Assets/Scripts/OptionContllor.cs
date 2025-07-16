@@ -13,7 +13,6 @@ public class OptionContllor : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(Time.timeScale);
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (OnOff)
