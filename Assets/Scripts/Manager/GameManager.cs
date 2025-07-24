@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
         comboText.text = "";
         GameClearUI.SetActive(false);
 
-        ShowOnlyPlayerPose(""); // ✅ 기본 손자세 보이기
+        ShowOnlyPlayerPose(""); // 기본 손자세 보이기
 
         StartCoroutine(PlayLoop());
     }
