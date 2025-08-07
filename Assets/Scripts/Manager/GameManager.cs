@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
     public Transform enemyContainer;           // 방향별 Enemy 오브젝트들이 들어있는 컨테이너
     public Transform playerContainer;          // 방향별 플레이어 오브젝트들이 들어있는 컨테이너
     public TMP_Text comboText;                 // 화면에 표시되는 콤보 텍스트
-    public GameObject GameClearUI;             // 게임 클리어 UI
     public GameObject GameOver_Option;         // 게임 오버 UI
     public GameObject enemyDead;               // 게임 클리어 시 보여줄 Enemy_Dead
     public Image Flash_Effect;                        // 섬광 이펙트용 이미지
@@ -22,6 +21,14 @@ public class GameManager : MonoBehaviour
     public KeyCode downKey = KeyCode.S;
     public KeyCode leftKey = KeyCode.A;
     public KeyCode rightKey = KeyCode.D;
+
+    // 사운드
+    public AudioSource audioSource;
+    public AudioClip soundUp;
+    public AudioClip soundDown;
+    public AudioClip soundLeft;
+    public AudioClip soundRight;
+
 
     // 공격 방향 시퀀스 (고정)
     private string[] directionSequence = new string[]
@@ -48,7 +55,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         comboText.text = "";
-        GameClearUI.SetActive(false);
 
         ShowOnlyPlayerPose(""); // 기본 손자세 보이기
 
@@ -71,6 +77,9 @@ public class GameManager : MonoBehaviour
 
             comboCount++;
             comboText.text = "Combo: " + comboCount;
+
+            // 사운드 
+            PlayDirectionSound(currentDirection);   
 
             // 섬광 이펙트 출력
             StartCoroutine(ShowFlashEffect());
@@ -154,7 +163,6 @@ public class GameManager : MonoBehaviour
         gameclear = true;
 
         ShowOnlyEnemyDead();                    // 죽은 적 연출
-        GameClearUI.SetActive(true);            // 클리어 UI 띄우기
 
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene("ChattingScene");
@@ -265,4 +273,24 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
+
+    void PlayDirectionSound(string direction)
+    {
+        switch (direction)
+        {
+            case "Up":
+                audioSource.PlayOneShot(soundUp);
+                break;
+            case "Down":
+                audioSource.PlayOneShot(soundDown);
+                break;
+            case "Left":
+                audioSource.PlayOneShot(soundLeft);
+                break;
+            case "Right":
+                audioSource.PlayOneShot(soundRight);
+                break;
+        }
+    }
+
 }

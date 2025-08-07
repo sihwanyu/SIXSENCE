@@ -3,7 +3,19 @@ guid: 9956d20f89f77de458e3309b8d5d3cf7
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - enemyContainer: {instanceID: 0}
+  - playerContainer: {instanceID: 0}
+  - comboText: {instanceID: 0}
+  - GameOver_Option: {instanceID: 0}
+  - enemyDead: {instanceID: 0}
+  - Flash_Effect: {instanceID: 0}
+  - Dead_Effect: {instanceID: 0}
+  - audioSource: {instanceID: 0}
+  - soundUp: {fileID: 8300000, guid: 08ab5d795c0b9634da0cd8b57c5bde5a, type: 3}
+  - soundDown: {fileID: 8300000, guid: b61f52481fc0f694b81ceffa61924c0c, type: 3}
+  - soundLeft: {fileID: 8300000, guid: 7006e18e784c53048a4cb2c6a08adbca, type: 3}
+  - soundRight: {fileID: 8300000, guid: 6a1c293f4e44dc248826d110308ca7f6, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
