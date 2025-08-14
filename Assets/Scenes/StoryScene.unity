@@ -573,7 +573,7 @@ MonoBehaviour:
   _chatBox: {fileID: 1319279992}
   _npc: {fileID: 552810631}
   _jsonFile: {fileID: 4900000, guid: 9f2f79e7d062bf04c931d23595ab2899, type: 3}
-  _nextScene: {fileID: 102900000, guid: fb374ba2679cb884ca35f6635edc8aa8, type: 3}
+  _nextScene: {fileID: 102900000, guid: f906752e1907e3044928cff7eebb2242, type: 3}
 --- !u!1 &552810631
 GameObject:
   m_ObjectHideFlags: 0
